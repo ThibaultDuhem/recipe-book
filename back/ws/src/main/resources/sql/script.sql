@@ -95,12 +95,31 @@ ALTER TABLE stock_ingredient ALTER COLUMN id_ingredient SET DEFAULT 0;
 ALTER TABLE stock_ingredient ALTER COLUMN id_stock SET DEFAULT 0;
 ALTER TABLE utensil_recipe ALTER COLUMN id_utensil SET DEFAULT 0;
 ALTER TABLE utensil_recipe ALTER COLUMN id_recipe SET DEFAULT 0;
+ALTER TABLE shopping_list DROP COLUMN quantity;
+
 
 alter table recipe add constraint pk_recipe primary key (id);
 alter table recipe_book add constraint pk_recipe_book primary key (id);
 alter table recipe_book_recipe add constraint fk_recipe_book_recipe foreign key (id_recipe) references recipe(id);
 alter table recipe_book_recipe add constraint fk_recipe_book_recipe2 foreign key (id_recipe_book) references recipe_book(id);
 alter table recipe_book_recipe add constraint pk_recipe_book_recipe primary key (id_recipe,id_recipe_book);
+alter table recipe_ingredient add constraint fk_recipe_ingredient foreign key (id_recipe) references recipe(id);
+alter table recipe_ingredient add constraint fk_recipe_ingredient2 foreign key (id_ingredient) references ingredient(id);
+alter table recipe_ingredient add constraint pk_recipe_ingredient primary key (id_recipe,id_ingredient);
+alter table shopping_list_ingredient add constraint fk_shopping_list_ingredient foreign key (id_shopping_list) references shopping_list(id);
+alter table shopping_list_ingredient add constraint fk_shopping_list_ingredient2 foreign key (id_ingredient) references ingredient(id);
+alter table shopping_list_ingredient add constraint pk_shopping_list_ingredient primary key (id_shopping_list,id_ingredient);
+alter table stock_ingredient add constraint fk_stock_ingredient foreign key (id_stock) references stock(id);
+alter table stock_ingredient add constraint fk_stock_ingredient2 foreign key (id_ingredient) references ingredient(id);
+alter table stock_ingredient add constraint pk_stock_ingredient primary key (id_stock,id_ingredient);
+alter table utensil_recipe add constraint fk_utensil_recipe foreign key (id_recipe) references recipe(id);
+alter table utensil_recipe add constraint fk_utensil_recipe2 foreign key (id_utensil) references utensil(id);
+alter table utensil_recipe add constraint pk_utensil_recipe primary key (id_recipe,id_utensil);
+
+
+
+
+
 -- INSERT DATA --
 
 -- UPDATE DATA --

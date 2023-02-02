@@ -1,6 +1,5 @@
 package com.recipebook.ws.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +9,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "utensil")
-public class Utensil {
+@Table(name = "shopping_list")
+public class ShoppingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,12 +19,11 @@ public class Utensil {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "picture")
-    private String picture;
-
-    @JsonIgnore
     @ManyToMany
-    private Set<Recipe> recipes = new HashSet<>();
+    @JoinTable( name = "shopping_list_ingredient",
+            joinColumns = @JoinColumn( name = "id_shopping_list" ),
+            inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
+    private Set<Ingredient> Ingredients = new HashSet<>();
 
 
 }

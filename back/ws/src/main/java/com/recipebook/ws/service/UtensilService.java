@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -18,14 +17,14 @@ public class UtensilService {
     private final UtensilRepository utensilRepository;
 
     public List<Utensil> retrieveAllUtensil(){
-        log.info("Retrieving all recipes in DB");
+        log.info("Retrieving all utensils in DB");
         List<Utensil> utensils = utensilRepository.findAll();
         log.info("{} elements retrieved", utensils.size());
         return utensils;
     }
 
     public Utensil retrieveUtensil(int id){
-        log.info("Retrieving one recipe with {} in id", id);
+        log.info("Retrieving one utensil with {} in id", id);
         Utensil utensil = utensilRepository.findById(id);
         log.info("{} retrieved", utensil.getName());
         return utensil;

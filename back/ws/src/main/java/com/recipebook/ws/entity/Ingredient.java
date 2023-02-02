@@ -1,8 +1,11 @@
 package com.recipebook.ws.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +28,20 @@ public class Ingredient {
 
     @Column(name = "description")
     private String description;
+
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<Recipe> recipes = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<ShoppingList> shoppingLists = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<Stock> stocks = new HashSet<>();
+
 
 }
 

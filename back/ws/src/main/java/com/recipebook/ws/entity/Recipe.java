@@ -1,8 +1,11 @@
 package com.recipebook.ws.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -40,5 +43,22 @@ public class Recipe {
 
     @Column(name = "steps")
     private int steps;
+
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<RecipeBook> recipeBooks = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable( name = "recipe_ingredient",
+            joinColumns = @JoinColumn( name = "id_recipe" ),
+            inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
+    private Set<Ingredient> Ingredients = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable( name = "utensil_recipe",
+            joinColumns = @JoinColumn( name = "id_recipe" ),
+            inverseJoinColumns = @JoinColumn( name = "id_utensil" ) )
+    private Set<Utensil> Utensils = new HashSet<>();
 
 }

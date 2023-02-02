@@ -3,10 +3,9 @@ package com.recipebook.ws.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,10 +31,10 @@ public class RecipeBook {
     @Column(name = "author")
     private int author;
 
-    @OneToMany//(fetch = FetchType.LAZY)
+
+    @ManyToMany
     @JoinTable( name = "recipe_book_recipe",
             joinColumns = @JoinColumn( name = "id_recipe_book" ),
             inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
-    private List<Recipe> recipes = new ArrayList<>();
-
+    private Set<Recipe> Recipes = new HashSet<>();
 }

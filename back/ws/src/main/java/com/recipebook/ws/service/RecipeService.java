@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -30,4 +29,10 @@ public class RecipeService {
         log.info("{} retrieved", recipe.getName());
         return recipe;
     }
+
+/*    public Recipe assignRecipeBookToRecipe(int Id, int recipeBookId) {
+        Recipe recipe = recipeRepository.findById(Id);
+            return recipeRepository.save(recipe);
+
+    }*/
 }
