@@ -19,7 +19,12 @@ public class ShoppingList {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     @JoinTable( name = "shopping_list_ingredient",
             joinColumns = @JoinColumn( name = "id_shopping_list" ),
             inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )

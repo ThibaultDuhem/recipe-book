@@ -1,5 +1,7 @@
 package com.recipebook.ws.service;
 
+import com.recipebook.ws.entity.Recipe;
+import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +31,20 @@ public class StockService {
         log.info("{} retrieved", stock.getName());
         return stock;
     }
+
+    public Stock createStock(Stock stock) {
+        log.info("create one stock in DB");
+        return stockRepository.save(stock);
+    }
+
+    public void deleteStockById(int id) {
+        stockRepository.deleteById(id);
+        log.info("Deleting one stock list with {} in id", id);
+    }
+
+    public Stock updateStock(Stock stock) {
+        log.info("update one stock in DB");
+        return stockRepository.save(stock);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.recipebook.ws.service;
 
+import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.entity.User;
 import com.recipebook.ws.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +30,20 @@ public class UserService {
         log.info("{} retrieved", user.getPseudo());
         return user;
     }
+
+    public User createUser(User user) {
+        log.info("create one user in DB");
+        return userRepository.save(user);
+    }
+
+    public void deleteUserById(int id) {
+        userRepository.deleteById(id);
+        log.info("Deleting one user list with {} in id", id);
+    }
+
+    public User updateUser(User user) {
+        log.info("update one user in DB");
+        return userRepository.save(user);
+    }
+
 }

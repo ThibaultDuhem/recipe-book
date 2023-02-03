@@ -24,8 +24,15 @@ public class Utensil {
     private String picture;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable( name = "utensil_recipe",
+            joinColumns = @JoinColumn( name = "id_utensil" ),
+            inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
     private Set<Recipe> recipes = new HashSet<>();
-
 
 }

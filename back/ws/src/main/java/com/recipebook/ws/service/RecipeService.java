@@ -1,6 +1,8 @@
 package com.recipebook.ws.service;
 
+import com.recipebook.ws.entity.Ingredient;
 import com.recipebook.ws.entity.Recipe;
+import com.recipebook.ws.entity.RecipeBook;
 import com.recipebook.ws.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +32,19 @@ public class RecipeService {
         return recipe;
     }
 
-/*    public Recipe assignRecipeBookToRecipe(int Id, int recipeBookId) {
-        Recipe recipe = recipeRepository.findById(Id);
-            return recipeRepository.save(recipe);
+    public Recipe createRecipe(Recipe recipe) {
+        log.info("create one recipe in DB");
+        return recipeRepository.save(recipe);
+    }
 
-    }*/
+    public void deleteRecipeById(Long id) {
+        recipeRepository.deleteById(id);
+        log.info("Deleting one recipe list with {} in id", id);
+    }
+
+    public Recipe updateRecipe(Recipe recipe) {
+        log.info("update one recipe in DB");
+        return recipeRepository.save(recipe);
+    }
+
 }

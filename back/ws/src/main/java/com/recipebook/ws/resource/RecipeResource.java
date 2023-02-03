@@ -2,6 +2,8 @@ package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
 import com.recipebook.ws.entity.Recipe;
+import com.recipebook.ws.entity.RecipeBook;
+import com.recipebook.ws.repository.RecipeBookRepository;
 import com.recipebook.ws.service.RecipeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class RecipeResource {
+    private final RecipeBookRepository recipeBookRepository;
 
     private final RecipeService recipeService;
 
@@ -27,15 +30,21 @@ public class RecipeResource {
         return recipeService.retrieveRecipe(id);
     }
 
-/*    @PutMapping("/{Id}/recipeBook/{recipeBookId}")
-    public Recipe assignRecipeBookToRecipe(
-            @PathVariable int id,
-            @PathVariable int recipeBookId
-    ){
-        return recipeService.assignRecipeBookToRecipe(id, recipeBookId);
-    }*/
+    @PostMapping
+    public Recipe newRecipe(@RequestBody Recipe recipe){
+        log.info("WS called");
+        return recipeService.createRecipe(recipe);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteRecipe(@PathVariable("id") Long id) {
+        recipeService.deleteRecipeById(id);
+    }
 
+    @PatchMapping("/{id}")
+    public Recipe updateIngredient(@RequestBody Recipe recipe) {
+        return recipeService.updateRecipe(recipe);
+    }
 
 }
 

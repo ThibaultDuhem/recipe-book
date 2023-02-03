@@ -32,7 +32,12 @@ public class RecipeBook {
     private int author;
 
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     @JoinTable( name = "recipe_book_recipe",
             joinColumns = @JoinColumn( name = "id_recipe_book" ),
             inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )

@@ -1,5 +1,6 @@
 package com.recipebook.ws.service;
 
+import com.recipebook.ws.entity.Recipe;
 import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.repository.ShoppingListRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +30,20 @@ public class ShoppingListService {
         log.info("{} retrieved", shoppingList.getName());
         return shoppingList;
     }
+
+    public ShoppingList createShoppingList(ShoppingList shoppingList) {
+        log.info("create one shopping list in DB");
+        return shoppingListRepository.save(shoppingList);
+    }
+
+    public void deleteShoppingListById(int id) {
+        shoppingListRepository.deleteById(id);
+        log.info("Deleting one shopping list list with {} in id", id);
+    }
+
+    public ShoppingList updateShoppingList(ShoppingList shoppingList) {
+        log.info("update one shopping list in DB");
+        return shoppingListRepository.save(shoppingList);
+    }
+
 }

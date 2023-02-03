@@ -31,15 +31,39 @@ public class Ingredient {
 
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable( name = "recipe_ingredient",
+            joinColumns = @JoinColumn( name = "id_ingredient" ),
+            inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
     private Set<Recipe> recipes = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable( name = "shopping_list_ingredient",
+            joinColumns = @JoinColumn( name = "id_ingredient" ),
+            inverseJoinColumns = @JoinColumn( name = "id_shopping_list" ) )
     private Set<ShoppingList> shoppingLists = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable( name = "stock_ingredient",
+            joinColumns = @JoinColumn( name = "id_ingredient" ),
+            inverseJoinColumns = @JoinColumn( name = "id_stock" ) )
     private Set<Stock> stocks = new HashSet<>();
 
 

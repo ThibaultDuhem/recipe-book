@@ -1,15 +1,14 @@
 package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
+import com.recipebook.ws.entity.Recipe;
 import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.repository.ShoppingListRepository;
 import com.recipebook.ws.service.ShoppingListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RequestMapping(ResourceUrlConst.SHOPPING_LIST_URI)
@@ -31,4 +30,21 @@ public class ShoppingListResource {
     public ShoppingList retrieveShoppingList(@PathVariable int id){
         return shoppingListService.retrieveShoppingList(id);
     }
+
+    @PostMapping
+    public ShoppingList newShoppingList(@RequestBody ShoppingList shoppingList){
+        log.info("WS called");
+        return shoppingListService.createShoppingList(shoppingList);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteShoppingList(@PathVariable("id") int id) {
+        shoppingListService.deleteShoppingListById(id);
+    }
+
+    @PatchMapping("/{id}")
+    public ShoppingList updateShoppingList(@RequestBody ShoppingList shoppingList) {
+        return shoppingListService.updateShoppingList(shoppingList);
+    }
+
 }

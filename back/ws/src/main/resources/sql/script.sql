@@ -117,6 +117,35 @@ alter table utensil_recipe add constraint fk_utensil_recipe2 foreign key (id_ute
 alter table utensil_recipe add constraint pk_utensil_recipe primary key (id_recipe,id_utensil);
 
 
+ALTER TABLE stock           DROP CONSTRAINT stock_pkey;
+ALTER TABLE stock           DROP COLUMN id;
+ALTER TABLE stock           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE "user"           DROP CONSTRAINT user_pkey;
+ALTER TABLE "user"           DROP COLUMN id;
+ALTER TABLE "user"           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE ingredient           DROP CONSTRAINT ingredient_pkey;
+ALTER TABLE ingredient           DROP COLUMN id;
+ALTER TABLE ingredient           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE recipe           DROP CONSTRAINT recipe_pkey;
+ALTER TABLE recipe           DROP COLUMN id;
+ALTER TABLE recipe           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE recipe_book           DROP CONSTRAINT recipe_book_pkey;
+ALTER TABLE recipe_book           DROP COLUMN id;
+ALTER TABLE recipe_book           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE utensil           DROP CONSTRAINT utensil_pkey;
+ALTER TABLE utensil           DROP COLUMN id;
+ALTER TABLE utensil           ADD COLUMN id SERIAL PRIMARY KEY;
+
+ALTER TABLE shopping_list           DROP CONSTRAINT shopping_list_pkey;
+ALTER TABLE shopping_list           DROP COLUMN id;
+ALTER TABLE shopping_list           ADD COLUMN id SERIAL PRIMARY KEY;
+
+
 
 
 

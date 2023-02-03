@@ -46,16 +46,34 @@ public class Recipe {
 
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable( name = "recipe_book_recipe",
+            joinColumns = @JoinColumn( name = "id_recipe" ),
+            inverseJoinColumns = @JoinColumn( name = "id_recipe_book" ) )
     private Set<RecipeBook> recipeBooks = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     @JoinTable( name = "recipe_ingredient",
             joinColumns = @JoinColumn( name = "id_recipe" ),
             inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
     private Set<Ingredient> Ingredients = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     @JoinTable( name = "utensil_recipe",
             joinColumns = @JoinColumn( name = "id_recipe" ),
             inverseJoinColumns = @JoinColumn( name = "id_utensil" ) )

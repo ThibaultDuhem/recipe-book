@@ -22,7 +22,12 @@ public class Stock {
     @Column(name = "id_user")
     private Integer id_user;
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     @JoinTable( name = "stock_ingredient",
             joinColumns = @JoinColumn( name = "id_stock" ),
             inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
