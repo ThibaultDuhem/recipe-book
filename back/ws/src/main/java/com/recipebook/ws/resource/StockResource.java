@@ -32,18 +32,18 @@ public class StockResource {
     }
 
     @PostMapping
-    public Stock newStock(@RequestBody Stock stock){
+    public List<Stock> newStock(@RequestBody List<Stock> stock){
         log.info("WS called");
         return stockService.createStock(stock);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteStock(@PathVariable("id") int id) {
+    @DeleteMapping
+    public void deleteStock(@RequestBody List<Integer> id) {
         stockService.deleteStockById(id);
     }
 
-    @PatchMapping("/{id}")
-    public Stock updateStock(@RequestBody Stock stock) {
+    @PatchMapping
+    public List<Stock> updateStock(@RequestBody List<Stock> stock) {
         return stockService.updateStock(stock);
     }
 

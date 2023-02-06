@@ -32,19 +32,19 @@ public class StockService {
         return stock;
     }
 
-    public Stock createStock(Stock stock) {
-        log.info("create one stock in DB");
-        return stockRepository.save(stock);
+    public List<Stock> createStock(List<Stock> stock) {
+        log.info("create stock in DB");
+        return stockRepository.saveAll(stock);
     }
 
-    public void deleteStockById(int id) {
-        stockRepository.deleteById(id);
+    public void deleteStockById(List<Integer> id) {
+        stockRepository.deleteAllById(id);
         log.info("Deleting one stock list with {} in id", id);
     }
 
-    public Stock updateStock(Stock stock) {
-        log.info("update one stock in DB");
-        return stockRepository.save(stock);
+    public List<Stock> updateStock(List<Stock> stock) {
+        log.info("update stock in DB");
+        return stockRepository.saveAll(stock);
     }
 
 }

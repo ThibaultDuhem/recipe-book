@@ -30,18 +30,18 @@ public class UtensilResource {
     }
 
     @PostMapping
-    public Utensil newUtensil(@RequestBody Utensil utensil){
+    public List<Utensil> newUtensil(@RequestBody List<Utensil> utensil){
         log.info("WS called");
         return utensilService.createUtensil(utensil);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUtensil(@PathVariable("id") int id) {
+    @DeleteMapping
+    public void deleteUtensil(@RequestBody List<Integer> id) {
         utensilService.deleteUtensilById(id);
     }
 
-    @PatchMapping("/{id}")
-    public Utensil updateUtensil(@RequestBody Utensil utensil) {
+    @PatchMapping
+    public List<Utensil> updateUtensil(@RequestBody List<Utensil> utensil) {
         return utensilService.updateUtensil(utensil);
     }
 

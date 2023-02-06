@@ -1,6 +1,7 @@
 package com.recipebook.ws.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +31,7 @@ public class Ingredient {
     private String description;
 
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
@@ -42,8 +43,11 @@ public class Ingredient {
             inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
     private Set<Recipe> recipes = new HashSet<>();
 
-    @JsonIgnore
+
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
     @ManyToMany(
+            fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -54,7 +58,7 @@ public class Ingredient {
             inverseJoinColumns = @JoinColumn( name = "id_shopping_list" ) )
     private Set<ShoppingList> shoppingLists = new HashSet<>();
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,

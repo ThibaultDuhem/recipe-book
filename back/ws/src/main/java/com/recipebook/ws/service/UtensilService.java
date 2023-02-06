@@ -32,19 +32,19 @@ public class UtensilService {
         return utensil;
     }
 
-    public Utensil createUtensil(Utensil utensil) {
-        log.info("create one utensil in DB");
-        return utensilRepository.save(utensil);
+    public List<Utensil> createUtensil(List<Utensil> utensil) {
+        log.info("create utensil in DB");
+        return utensilRepository.saveAll(utensil);
     }
 
-    public void deleteUtensilById(int id) {
-        utensilRepository.deleteById(id);
-        log.info("Deleting one utensil list with {} in id", id);
+    public void deleteUtensilById(List<Integer> id) {
+        utensilRepository.deleteAllById(id);
+        log.info("Deleting utensil list with {} in id", id);
     }
 
-    public Utensil updateUtensil(Utensil utensil) {
-        log.info("update one utensil in DB");
-        return utensilRepository.save(utensil);
+    public List<Utensil> updateUtensil(List<Utensil> utensil) {
+        log.info("update utensil in DB");
+        return utensilRepository.saveAll(utensil);
     }
 
 }

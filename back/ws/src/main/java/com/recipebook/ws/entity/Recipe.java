@@ -1,10 +1,14 @@
 package com.recipebook.ws.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -45,7 +49,7 @@ public class Recipe {
     private int steps;
 
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
@@ -57,6 +61,7 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn( name = "id_recipe_book" ) )
     private Set<RecipeBook> recipeBooks = new HashSet<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
@@ -68,6 +73,7 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
     private Set<Ingredient> Ingredients = new HashSet<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
@@ -78,5 +84,9 @@ public class Recipe {
             joinColumns = @JoinColumn( name = "id_recipe" ),
             inverseJoinColumns = @JoinColumn( name = "id_utensil" ) )
     private Set<Utensil> Utensils = new HashSet<>();
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_user")
+    private User user;
 
 }

@@ -31,19 +31,20 @@ public class UserService {
         return user;
     }
 
-    public User createUser(User user) {
-        log.info("create one user in DB");
-        return userRepository.save(user);
+    public List<User> createUser(List<User> users) {
+        log.info("create user in DB");
+        return userRepository.saveAll(users);
     }
 
-    public void deleteUserById(int id) {
-        userRepository.deleteById(id);
-        log.info("Deleting one user list with {} in id", id);
+
+    public void deleteUser(List<Integer> id) {
+        userRepository.deleteAllById(id);
+        log.info("Deleting user list with {} in id", id);
     }
 
-    public User updateUser(User user) {
-        log.info("update one user in DB");
-        return userRepository.save(user);
+    public List<User> updateUser(List<User> user) {
+        log.info("update user in DB");
+        return userRepository.saveAll(user);
     }
 
 }

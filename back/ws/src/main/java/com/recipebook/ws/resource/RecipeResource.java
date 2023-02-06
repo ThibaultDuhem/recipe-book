@@ -31,18 +31,18 @@ public class RecipeResource {
     }
 
     @PostMapping
-    public Recipe newRecipe(@RequestBody Recipe recipe){
+    public List<Recipe> newRecipe(@RequestBody List<Recipe> recipe){
         log.info("WS called");
         return recipeService.createRecipe(recipe);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteRecipe(@PathVariable("id") Long id) {
+    @DeleteMapping
+    public void deleteRecipe(@RequestBody List<Long> id) {
         recipeService.deleteRecipeById(id);
     }
 
-    @PatchMapping("/{id}")
-    public Recipe updateIngredient(@RequestBody Recipe recipe) {
+    @PatchMapping
+    public List<Recipe> updateIngredient(@RequestBody List<Recipe> recipe) {
         return recipeService.updateRecipe(recipe);
     }
 

@@ -1,8 +1,10 @@
 package com.recipebook.ws.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,10 +30,11 @@ public class RecipeBook {
     @Column(name = "modification_date")
     private LocalDate modificationDate;
 
-    @Column(name = "author")
-    private int author;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_user")
+    private User user;
 
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipeBooks"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,
@@ -42,4 +45,7 @@ public class RecipeBook {
             joinColumns = @JoinColumn( name = "id_recipe_book" ),
             inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
     private Set<Recipe> Recipes = new HashSet<>();
+
+
+
 }

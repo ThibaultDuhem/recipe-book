@@ -33,19 +33,19 @@ public class RecipeBookService {
         return recipeBook;
     }
 
-    public RecipeBook createRecipeBook(RecipeBook recipeBook) {
-        log.info("create one recipe book in DB");
-        return recipeBookRepository.save(recipeBook);
+    public List<RecipeBook> createRecipeBook(List<RecipeBook> recipeBook) {
+        log.info("create recipe book in DB");
+        return recipeBookRepository.saveAll(recipeBook);
     }
 
-    public void deleteRecipeBookById(int id) {
-        recipeBookRepository.deleteById(id);
-        log.info("Deleting one recipe book list with {} in id", id);
+    public void deleteRecipeBookById(List<Integer> id) {
+        recipeBookRepository.deleteAllById(id);
+        log.info("Deleting recipe book list with {} in id", id);
     }
 
-    public RecipeBook updateRecipeBook(RecipeBook recipeBook) {
-        log.info("update one recipe book in DB");
-        return recipeBookRepository.save(recipeBook);
+    public List<RecipeBook> updateRecipeBook(List<RecipeBook> recipeBook) {
+        log.info("update recipe book in DB");
+        return recipeBookRepository.saveAll(recipeBook);
     }
 
 }

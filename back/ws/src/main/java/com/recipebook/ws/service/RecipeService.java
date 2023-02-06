@@ -32,19 +32,19 @@ public class RecipeService {
         return recipe;
     }
 
-    public Recipe createRecipe(Recipe recipe) {
-        log.info("create one recipe in DB");
-        return recipeRepository.save(recipe);
+    public List<Recipe> createRecipe(List<Recipe> recipe) {
+        log.info("create recipe in DB");
+        return recipeRepository.saveAll(recipe);
     }
 
-    public void deleteRecipeById(Long id) {
-        recipeRepository.deleteById(id);
+    public void deleteRecipeById(List<Long> id) {
+        recipeRepository.deleteAllById(id);
         log.info("Deleting one recipe list with {} in id", id);
     }
 
-    public Recipe updateRecipe(Recipe recipe) {
-        log.info("update one recipe in DB");
-        return recipeRepository.save(recipe);
+    public List<Recipe> updateRecipe(List<Recipe> recipe) {
+        log.info("update recipe in DB");
+        return recipeRepository.saveAll(recipe);
     }
 
 }

@@ -33,19 +33,18 @@ public class UserResource {
 
 
     @PostMapping
-        public User newUser(@RequestBody User user){
+    public List<User> newUser(@RequestBody List<User> user){
         log.info("WS called");
         return userService.createUser(user);
     }
 
-
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") int id) {
-        userService.deleteUserById(id);
+    @DeleteMapping
+    public void deleteUser(@RequestBody List<Integer> id) {
+        userService.deleteUser(id);
     }
 
-    @PatchMapping("/{id}")
-    public User updateUser(@RequestBody User user) {
+    @PatchMapping
+    public List<User> updateUser(@RequestBody List<User> user) {
         return userService.updateUser(user);
     }
 

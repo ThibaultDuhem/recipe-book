@@ -31,19 +31,19 @@ public class ShoppingListService {
         return shoppingList;
     }
 
-    public ShoppingList createShoppingList(ShoppingList shoppingList) {
-        log.info("create one shopping list in DB");
-        return shoppingListRepository.save(shoppingList);
+    public List<ShoppingList> createShoppingList(List<ShoppingList> shoppingList) {
+        log.info("create shopping list in DB");
+        return shoppingListRepository.saveAll(shoppingList);
     }
 
-    public void deleteShoppingListById(int id) {
-        shoppingListRepository.deleteById(id);
-        log.info("Deleting one shopping list list with {} in id", id);
+    public void deleteShoppingListById(List<Integer> id) {
+        shoppingListRepository.deleteAllById(id);
+        log.info("Deleting shopping list list with {} in id", id);
     }
 
-    public ShoppingList updateShoppingList(ShoppingList shoppingList) {
-        log.info("update one shopping list in DB");
-        return shoppingListRepository.save(shoppingList);
+    public List<ShoppingList> updateShoppingList(List<ShoppingList> shoppingList) {
+        log.info("update shopping list in DB");
+        return shoppingListRepository.saveAll(shoppingList);
     }
 
 }

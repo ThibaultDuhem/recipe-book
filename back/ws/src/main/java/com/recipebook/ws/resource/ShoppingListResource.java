@@ -32,18 +32,18 @@ public class ShoppingListResource {
     }
 
     @PostMapping
-    public ShoppingList newShoppingList(@RequestBody ShoppingList shoppingList){
+    public List<ShoppingList> newShoppingList(@RequestBody List<ShoppingList> shoppingList){
         log.info("WS called");
         return shoppingListService.createShoppingList(shoppingList);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteShoppingList(@PathVariable("id") int id) {
+    @DeleteMapping
+    public void deleteShoppingList(@RequestBody List<Integer> id) {
         shoppingListService.deleteShoppingListById(id);
     }
 
-    @PatchMapping("/{id}")
-    public ShoppingList updateShoppingList(@RequestBody ShoppingList shoppingList) {
+    @PatchMapping
+    public List<ShoppingList> updateShoppingList(@RequestBody List<ShoppingList> shoppingList) {
         return shoppingListService.updateShoppingList(shoppingList);
     }
 

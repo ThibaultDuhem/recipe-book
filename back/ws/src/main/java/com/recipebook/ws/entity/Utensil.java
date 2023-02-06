@@ -1,6 +1,7 @@
 package com.recipebook.ws.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,7 @@ public class Utensil {
     @Column(name = "picture")
     private String picture;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "utensils"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,

@@ -1,8 +1,10 @@
 package com.recipebook.ws.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +21,11 @@ public class Stock {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_user")
-    private Integer id_user;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_user")
+    private User user;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "stocks"})
     @ManyToMany(
             cascade = {
                     CascadeType.PERSIST,

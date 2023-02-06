@@ -3,6 +3,7 @@ package com.recipebook.ws.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDate;
 
 @Getter
@@ -16,10 +17,10 @@ public class User {
     private Integer id;
 
     @Column(name = "firstname")
-    private String firstname;
+    private String firstName;
 
     @Column(name = "lastname")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "pseudo")
     private String pseudo;
@@ -32,5 +33,7 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+
 
 }

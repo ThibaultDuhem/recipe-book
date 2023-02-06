@@ -30,18 +30,18 @@ public class IngredientResource {
     }
 
     @PostMapping
-    public Ingredient newIngredient(@RequestBody Ingredient ingredient){
+    public List<Ingredient> newIngredient(@RequestBody List<Ingredient> ingredient){
         log.info("WS called");
         return ingredientService.createIngredient(ingredient);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteIngredient(@PathVariable("id") int id) {
+    @DeleteMapping
+    public void deleteIngredient(@RequestBody List<Integer> id) {
         ingredientService.deleteIngredientById(id);
     }
 
-    @PatchMapping("/{id}")
-    public Ingredient updateIngredient(@RequestBody Ingredient ingredient) {
+    @PatchMapping
+    public List<Ingredient> updateIngredient(@RequestBody List<Ingredient> ingredient) {
         return ingredientService.updateIngredient(ingredient);
     }
 

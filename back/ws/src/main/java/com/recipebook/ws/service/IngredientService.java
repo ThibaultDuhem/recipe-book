@@ -31,19 +31,19 @@ public class IngredientService {
         return ingredient;
     }
 
-    public Ingredient createIngredient(Ingredient ingredient) {
-        log.info("create one ingredient in DB");
-        return ingredientRepository.save(ingredient);
+    public List<Ingredient> createIngredient(List<Ingredient> ingredient) {
+        log.info("create ingredient in DB");
+        return ingredientRepository.saveAll(ingredient);
     }
 
-    public void deleteIngredientById(int id) {
-        ingredientRepository.deleteById(id);
-        log.info("Deleting one ingredient list with {} in id", id);
+    public void deleteIngredientById(List<Integer> id) {
+        ingredientRepository.deleteAllById(id);
+        log.info("Deleting ingredient list with {} in id", id);
     }
 
-    public Ingredient updateIngredient(Ingredient ingredient) {
-        log.info("update one ingredient in DB");
-        return ingredientRepository.save(ingredient);
+    public List<Ingredient> updateIngredient(List<Ingredient> ingredient) {
+        log.info("update ingredient in DB");
+        return ingredientRepository.saveAll(ingredient);
     }
 
 }
