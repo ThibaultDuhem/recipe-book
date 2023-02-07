@@ -1,10 +1,10 @@
 package com.recipebook.ws.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,46 +30,17 @@ public class Ingredient {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredient"})
+    @OneToMany(mappedBy = "ingredient")
+    private Set<RecipeIngredientAssoc> recipes = new HashSet<>();
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable( name = "recipe_ingredient",
-            joinColumns = @JoinColumn( name = "id_ingredient" ),
-            inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )
-    private Set<Recipe> recipes = new HashSet<>();
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredient"})
+    @OneToMany(mappedBy = "ingredient")
+    private Set<ShoppingListIngredientAssoc> shoppingLists = new HashSet<>();
 
-
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable( name = "shopping_list_ingredient",
-            joinColumns = @JoinColumn( name = "id_ingredient" ),
-            inverseJoinColumns = @JoinColumn( name = "id_shopping_list" ) )
-    private Set<ShoppingList> shoppingLists = new HashSet<>();
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredients"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable( name = "stock_ingredient",
-            joinColumns = @JoinColumn( name = "id_ingredient" ),
-            inverseJoinColumns = @JoinColumn( name = "id_stock" ) )
-    private Set<Stock> stocks = new HashSet<>();
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "ingredient"})
+    @OneToMany(mappedBy = "ingredient")
+    private Set<StockIngredientAssoc> stocks = new HashSet<>();
 
 }
 

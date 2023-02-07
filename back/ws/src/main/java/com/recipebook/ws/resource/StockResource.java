@@ -1,7 +1,6 @@
 package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
-import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.repository.StockRepository;
 import com.recipebook.ws.service.StockService;
@@ -32,19 +31,19 @@ public class StockResource {
     }
 
     @PostMapping
-    public List<Stock> newStock(@RequestBody List<Stock> stock){
+    public List<Stock> createStocks(@RequestBody List<Stock> stocks){
         log.info("WS called");
-        return stockService.createStock(stock);
+        return stockService.createStocks(stocks);
     }
 
     @DeleteMapping
-    public void deleteStock(@RequestBody List<Integer> id) {
-        stockService.deleteStockById(id);
+    public void deleteStocksById(@RequestBody List<Integer> ids) {
+        stockService.deleteStocksById(ids);
     }
 
     @PatchMapping
-    public List<Stock> updateStock(@RequestBody List<Stock> stock) {
-        return stockService.updateStock(stock);
+    public List<Stock> updateStocks(@RequestBody List<Stock> stocks) {
+        return stockService.updateStocks(stocks);
     }
 
 }

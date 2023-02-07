@@ -1,14 +1,11 @@
 package com.recipebook.ws.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -48,45 +45,27 @@ public class Recipe {
     @Column(name = "steps")
     private int steps;
 
-
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable( name = "recipe_book_recipe",
             joinColumns = @JoinColumn( name = "id_recipe" ),
             inverseJoinColumns = @JoinColumn( name = "id_recipe_book" ) )
     private Set<RecipeBook> recipeBooks = new HashSet<>();
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable( name = "recipe_ingredient",
-            joinColumns = @JoinColumn( name = "id_recipe" ),
-            inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
-    private Set<Ingredient> Ingredients = new HashSet<>();
-
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipes"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable( name = "utensil_recipe",
             joinColumns = @JoinColumn( name = "id_recipe" ),
             inverseJoinColumns = @JoinColumn( name = "id_utensil" ) )
-    private Set<Utensil> Utensils = new HashSet<>();
+    private Set<Utensil> utensils = new HashSet<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "firstName","lastName","pseudo","password","birth","email"})
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_user")
     private User user;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "recipe"})
+    @OneToMany(mappedBy = "recipe")
+    private Set<RecipeIngredientAssoc> ingredients = new HashSet<>();
 
 }

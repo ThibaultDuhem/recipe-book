@@ -1,12 +1,12 @@
 package com.recipebook.ws.service;
 
-import com.recipebook.ws.entity.Recipe;
 import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.repository.ShoppingListRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -31,19 +31,19 @@ public class ShoppingListService {
         return shoppingList;
     }
 
-    public List<ShoppingList> createShoppingList(List<ShoppingList> shoppingList) {
-        log.info("create shopping list in DB");
-        return shoppingListRepository.saveAll(shoppingList);
+    public List<ShoppingList> createShoppingLists(List<ShoppingList> shoppingLists) {
+        log.info("create shopping lists in DB");
+        return shoppingListRepository.saveAll(shoppingLists);
     }
 
-    public void deleteShoppingListById(List<Integer> id) {
-        shoppingListRepository.deleteAllById(id);
-        log.info("Deleting shopping list list with {} in id", id);
+    public void deleteShoppingListsById(List<Integer> ids) {
+        shoppingListRepository.deleteAllById(ids);
+        log.info("Deleting shopping lists list with {} in id", ids);
     }
 
-    public List<ShoppingList> updateShoppingList(List<ShoppingList> shoppingList) {
-        log.info("update shopping list in DB");
-        return shoppingListRepository.saveAll(shoppingList);
+    public List<ShoppingList> updateShoppingLists(List<ShoppingList> shoppingLists) {
+        log.info("update shopping lists in DB");
+        return shoppingListRepository.saveAll(shoppingLists);
     }
 
 }

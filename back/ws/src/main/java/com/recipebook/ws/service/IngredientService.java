@@ -1,12 +1,12 @@
 package com.recipebook.ws.service;
 
 import com.recipebook.ws.entity.Ingredient;
-import com.recipebook.ws.entity.User;
 import com.recipebook.ws.repository.IngredientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -31,19 +31,19 @@ public class IngredientService {
         return ingredient;
     }
 
-    public List<Ingredient> createIngredient(List<Ingredient> ingredient) {
-        log.info("create ingredient in DB");
-        return ingredientRepository.saveAll(ingredient);
+    public List<Ingredient> createIngredients(List<Ingredient> ingredients) {
+        log.info("create ingredients in DB");
+        return ingredientRepository.saveAll(ingredients);
     }
 
-    public void deleteIngredientById(List<Integer> id) {
-        ingredientRepository.deleteAllById(id);
-        log.info("Deleting ingredient list with {} in id", id);
+    public void deleteIngredientsById(List<Integer> ids) {
+        ingredientRepository.deleteAllById(ids);
+        log.info("Deleting ingredient list with {} in id", ids);
     }
 
-    public List<Ingredient> updateIngredient(List<Ingredient> ingredient) {
-        log.info("update ingredient in DB");
-        return ingredientRepository.saveAll(ingredient);
+    public List<Ingredient> updateIngredients(List<Ingredient> ingredients) {
+        log.info("update ingredients in DB");
+        return ingredientRepository.saveAll(ingredients);
     }
 
 }

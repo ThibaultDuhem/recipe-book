@@ -20,7 +20,7 @@ CREATE TABLE public.recipe (
 	"comment" varchar NULL,
 	steps int4 DEFAULT 0,
 	number_persons int4 DEFAULT 0,
-	id_user int4 DEFAULT 1,
+	id_user int4 DEFAULT 0,
 	CONSTRAINT pk_recipe PRIMARY KEY (id),
 	CONSTRAINT fk_recipe_user FOREIGN KEY (id_user) REFERENCES public."user"(id)
 );
@@ -67,7 +67,7 @@ CREATE TABLE public.recipe_ingredient (
 CREATE TABLE public.shopping_list (
 	id serial4 NOT NULL,
 	"name" varchar(100) NOT NULL,
-	id_user int4 DEFAULT 1,
+	id_user int4 DEFAULT 0,
 	CONSTRAINT pk_shopping_list PRIMARY KEY (id),
 	CONSTRAINT fk_shopping_list_user FOREIGN KEY (id_user) REFERENCES public."user"(id)
 );
@@ -75,6 +75,7 @@ CREATE TABLE public.shopping_list (
 CREATE TABLE public.shopping_list_ingredient (
 	id_ingredient int4 NOT NULL DEFAULT 0,
 	id_shopping_list int4 NOT NULL DEFAULT 0,
+	quantity int4 DEFAULT 0,
 	CONSTRAINT pk_shopping_list_ingredient PRIMARY KEY (id_shopping_list, id_ingredient),
 	CONSTRAINT fk_shopping_list_ingredient FOREIGN KEY (id_shopping_list) REFERENCES public.shopping_list(id),
 	CONSTRAINT fk_shopping_list_ingredient2 FOREIGN KEY (id_ingredient) REFERENCES public.ingredient(id)
@@ -83,7 +84,7 @@ CREATE TABLE public.shopping_list_ingredient (
 CREATE TABLE public.stock (
 	id serial4 NOT NULL,
 	"name" varchar(100) NOT NULL,
-	id_user int4 DEFAULT 1,
+	id_user int4 DEFAULT 0,
 	CONSTRAINT pk_stock PRIMARY KEY (id),
 	CONSTRAINT fk_stock_user FOREIGN KEY (id_user) REFERENCES public."user"(id)
 );
@@ -123,6 +124,7 @@ INSERT INTO recipe (name, type) VALUES ('Recette 1', 'Type1');
 INSERT INTO recipe (name, type) VALUES ('Recette 2', 'Type1');
 INSERT INTO recipe (name, type) VALUES ('Recette 3', 'Type2');
 
+INSERT INTO "user" (id, pseudo, "password", email) VALUES (0, 'zero', 'zero', 'zero@0.com');
 INSERT INTO "user" (pseudo, "password", email) VALUES ('Toto', 'toto', 'toto@gmail.com');
 
 INSERT INTO recipe_book (name, creation_date, modification_date, id_user) VALUES ('Livre 1', current_timestamp, current_timestamp, 1);

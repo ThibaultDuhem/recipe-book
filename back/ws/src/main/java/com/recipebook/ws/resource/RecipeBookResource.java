@@ -1,7 +1,6 @@
 package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
-import com.recipebook.ws.entity.Ingredient;
 import com.recipebook.ws.entity.RecipeBook;
 import com.recipebook.ws.repository.RecipeBookRepository;
 import com.recipebook.ws.service.RecipeBookService;
@@ -31,19 +30,19 @@ public class RecipeBookResource {
     }
 
     @PostMapping
-    public List<RecipeBook> newRecipeBook(@RequestBody List<RecipeBook> recipeBook){
+    public List<RecipeBook> createRecipeBooks(@RequestBody List<RecipeBook> recipeBooks){
         log.info("WS called");
-        return recipeBookService.createRecipeBook(recipeBook);
+        return recipeBookService.createRecipeBooks(recipeBooks);
     }
 
     @DeleteMapping
-    public void deleteRecipeBook(@RequestBody List<Integer> id) {
-        recipeBookService.deleteRecipeBookById(id);
+    public void deleteRecipeBooksById(@RequestBody List<Integer> ids) {
+        recipeBookService.deleteRecipeBooksById(ids);
     }
 
     @PatchMapping
-    public List<RecipeBook> updateRecipeBook(@RequestBody List<RecipeBook> recipeBook) {
-        return recipeBookService.updateRecipeBook(recipeBook);
+    public List<RecipeBook> updateRecipeBooks(@RequestBody List<RecipeBook> recipeBooks) {
+        return recipeBookService.updateRecipeBooks(recipeBooks);
     }
 
 }

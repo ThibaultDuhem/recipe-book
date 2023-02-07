@@ -1,13 +1,12 @@
 package com.recipebook.ws.service;
 
-import com.recipebook.ws.entity.Ingredient;
 import com.recipebook.ws.entity.Recipe;
-import com.recipebook.ws.entity.RecipeBook;
 import com.recipebook.ws.repository.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -32,19 +31,19 @@ public class RecipeService {
         return recipe;
     }
 
-    public List<Recipe> createRecipe(List<Recipe> recipe) {
+    public List<Recipe> createRecipes(List<Recipe> recipes) {
         log.info("create recipe in DB");
-        return recipeRepository.saveAll(recipe);
+        return recipeRepository.saveAll(recipes);
     }
 
-    public void deleteRecipeById(List<Long> id) {
-        recipeRepository.deleteAllById(id);
-        log.info("Deleting one recipe list with {} in id", id);
+    public void deleteRecipesById(List<Integer> ids) {
+        recipeRepository.deleteAllById(ids);
+        log.info("Deleting one recipe list with {} in id", ids);
     }
 
-    public List<Recipe> updateRecipe(List<Recipe> recipe) {
+    public List<Recipe> updateRecipes(List<Recipe> recipes) {
         log.info("update recipe in DB");
-        return recipeRepository.saveAll(recipe);
+        return recipeRepository.saveAll(recipes);
     }
 
 }

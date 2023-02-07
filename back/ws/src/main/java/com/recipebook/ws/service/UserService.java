@@ -1,12 +1,12 @@
 package com.recipebook.ws.service;
 
-import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.entity.User;
 import com.recipebook.ws.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -31,20 +31,20 @@ public class UserService {
         return user;
     }
 
-    public List<User> createUser(List<User> users) {
+    public List<User> createUsers(List<User> users) {
         log.info("create user in DB");
         return userRepository.saveAll(users);
     }
 
 
-    public void deleteUser(List<Integer> id) {
-        userRepository.deleteAllById(id);
-        log.info("Deleting user list with {} in id", id);
+    public void deleteUsersById(List<Integer> ids) {
+        userRepository.deleteAllById(ids);
+        log.info("Deleting user lists with {} in id", ids);
     }
 
-    public List<User> updateUser(List<User> user) {
-        log.info("update user in DB");
-        return userRepository.saveAll(user);
+    public List<User> updateUsers(List<User> users) {
+        log.info("update users in DB");
+        return userRepository.saveAll(users);
     }
 
 }

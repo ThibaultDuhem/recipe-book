@@ -1,8 +1,6 @@
 package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
-import com.recipebook.ws.entity.Stock;
-import com.recipebook.ws.entity.User;
 import com.recipebook.ws.entity.Utensil;
 import com.recipebook.ws.service.UtensilService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +18,7 @@ public class UtensilResource {
     private final UtensilService utensilService;
 
     @GetMapping
-    public List<Utensil> retrieveAllUtensils(){
+    public List<Utensil> retrieveAllUtensil(){
         log.info("WS called");
         return utensilService.retrieveAllUtensil();
     }
@@ -30,19 +28,19 @@ public class UtensilResource {
     }
 
     @PostMapping
-    public List<Utensil> newUtensil(@RequestBody List<Utensil> utensil){
+    public List<Utensil> createUtensils(@RequestBody List<Utensil> utensils){
         log.info("WS called");
-        return utensilService.createUtensil(utensil);
+        return utensilService.createUtensils(utensils);
     }
 
     @DeleteMapping
-    public void deleteUtensil(@RequestBody List<Integer> id) {
-        utensilService.deleteUtensilById(id);
+    public void deleteUtensilsById(@RequestBody List<Integer> ids) {
+        utensilService.deleteUtensilsById(ids);
     }
 
     @PatchMapping
-    public List<Utensil> updateUtensil(@RequestBody List<Utensil> utensil) {
-        return utensilService.updateUtensil(utensil);
+    public List<Utensil> updateUtensils(@RequestBody List<Utensil> utensils) {
+        return utensilService.updateUtensils(utensils);
     }
 
 }

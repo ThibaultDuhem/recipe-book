@@ -21,21 +21,12 @@ public class Stock {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "firstName","lastName","pseudo","password","birth","email"})
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_user")
     private User user;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "stocks"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
-    @JoinTable( name = "stock_ingredient",
-            joinColumns = @JoinColumn( name = "id_stock" ),
-            inverseJoinColumns = @JoinColumn( name = "id_ingredient" ) )
-    private Set<Ingredient> Ingredients = new HashSet<>();
-
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "stock"})
+    @OneToMany(mappedBy = "stock")
+    private Set<StockIngredientAssoc> ingredients = new HashSet<>();
 }

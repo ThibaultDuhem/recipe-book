@@ -1,6 +1,5 @@
 package com.recipebook.ws.service;
 
-import com.recipebook.ws.entity.Ingredient;
 import com.recipebook.ws.entity.RecipeBook;
 import com.recipebook.ws.repository.RecipeBookRepository;
 import com.recipebook.ws.repository.RecipeRepository;
@@ -8,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -33,19 +33,19 @@ public class RecipeBookService {
         return recipeBook;
     }
 
-    public List<RecipeBook> createRecipeBook(List<RecipeBook> recipeBook) {
-        log.info("create recipe book in DB");
-        return recipeBookRepository.saveAll(recipeBook);
+    public List<RecipeBook> createRecipeBooks(List<RecipeBook> recipeBooks) {
+        log.info("create recipe books in DB");
+        return recipeBookRepository.saveAll(recipeBooks);
     }
 
-    public void deleteRecipeBookById(List<Integer> id) {
-        recipeBookRepository.deleteAllById(id);
-        log.info("Deleting recipe book list with {} in id", id);
+    public void deleteRecipeBooksById(List<Integer> ids) {
+        recipeBookRepository.deleteAllById(ids);
+        log.info("Deleting recipe books list with {} in id", ids);
     }
 
-    public List<RecipeBook> updateRecipeBook(List<RecipeBook> recipeBook) {
-        log.info("update recipe book in DB");
-        return recipeBookRepository.saveAll(recipeBook);
+    public List<RecipeBook> updateRecipeBooks(List<RecipeBook> recipeBooks) {
+        log.info("update recipe books in DB");
+        return recipeBookRepository.saveAll(recipeBooks);
     }
 
 }

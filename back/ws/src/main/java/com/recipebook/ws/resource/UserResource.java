@@ -1,7 +1,6 @@
 package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
-import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.entity.User;
 import com.recipebook.ws.repository.UserRepository;
 import com.recipebook.ws.service.UserService;
@@ -33,19 +32,19 @@ public class UserResource {
 
 
     @PostMapping
-    public List<User> newUser(@RequestBody List<User> user){
+    public List<User> createUsers(@RequestBody List<User> users){
         log.info("WS called");
-        return userService.createUser(user);
+        return userService.createUsers(users);
     }
 
     @DeleteMapping
-    public void deleteUser(@RequestBody List<Integer> id) {
-        userService.deleteUser(id);
+    public void deleteUsersById(@RequestBody List<Integer> ids) {
+        userService.deleteUsersById(ids);
     }
 
     @PatchMapping
-    public List<User> updateUser(@RequestBody List<User> user) {
-        return userService.updateUser(user);
+    public List<User> updateUsers(@RequestBody List<User> users) {
+        return userService.updateUsers(users);
     }
 
 }

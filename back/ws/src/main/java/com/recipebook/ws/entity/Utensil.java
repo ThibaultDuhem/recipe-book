@@ -1,10 +1,10 @@
 package com.recipebook.ws.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,12 +25,7 @@ public class Utensil {
     private String picture;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "utensils"})
-    @ManyToMany(
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            }
-    )
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable( name = "utensil_recipe",
             joinColumns = @JoinColumn( name = "id_utensil" ),
             inverseJoinColumns = @JoinColumn( name = "id_recipe" ) )

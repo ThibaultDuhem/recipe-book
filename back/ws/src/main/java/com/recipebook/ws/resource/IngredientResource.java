@@ -2,7 +2,6 @@ package com.recipebook.ws.resource;
 
 import com.recipebook.ws.consts.ResourceUrlConst;
 import com.recipebook.ws.entity.Ingredient;
-import com.recipebook.ws.entity.User;
 import com.recipebook.ws.service.IngredientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,19 +29,19 @@ public class IngredientResource {
     }
 
     @PostMapping
-    public List<Ingredient> newIngredient(@RequestBody List<Ingredient> ingredient){
+    public List<Ingredient> createIngredients(@RequestBody List<Ingredient> ingredients){
         log.info("WS called");
-        return ingredientService.createIngredient(ingredient);
+        return ingredientService.createIngredients(ingredients);
     }
 
     @DeleteMapping
-    public void deleteIngredient(@RequestBody List<Integer> id) {
-        ingredientService.deleteIngredientById(id);
+    public void deleteIngredientsById(@RequestBody List<Integer> ids) {
+        ingredientService.deleteIngredientsById(ids);
     }
 
     @PatchMapping
-    public List<Ingredient> updateIngredient(@RequestBody List<Ingredient> ingredient) {
-        return ingredientService.updateIngredient(ingredient);
+    public List<Ingredient> updateIngredients(@RequestBody List<Ingredient> ingredients) {
+        return ingredientService.updateIngredients(ingredients);
     }
 
 }

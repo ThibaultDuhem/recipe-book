@@ -1,13 +1,12 @@
 package com.recipebook.ws.service;
 
-import com.recipebook.ws.entity.Recipe;
-import com.recipebook.ws.entity.ShoppingList;
 import com.recipebook.ws.entity.Stock;
 import com.recipebook.ws.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -32,19 +31,19 @@ public class StockService {
         return stock;
     }
 
-    public List<Stock> createStock(List<Stock> stock) {
-        log.info("create stock in DB");
-        return stockRepository.saveAll(stock);
+    public List<Stock> createStocks(List<Stock> stocks) {
+        log.info("create stocks in DB");
+        return stockRepository.saveAll(stocks);
     }
 
-    public void deleteStockById(List<Integer> id) {
-        stockRepository.deleteAllById(id);
-        log.info("Deleting one stock list with {} in id", id);
+    public void deleteStocksById(List<Integer> ids) {
+        stockRepository.deleteAllById(ids);
+        log.info("Deleting one stock list with {} in id", ids);
     }
 
-    public List<Stock> updateStock(List<Stock> stock) {
-        log.info("update stock in DB");
-        return stockRepository.saveAll(stock);
+    public List<Stock> updateStocks(List<Stock> stocks) {
+        log.info("update stocks in DB");
+        return stockRepository.saveAll(stocks);
     }
 
 }
